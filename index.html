@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GVX Corretora | Planos de Saúde e Odontológicos</title>
+    
+    <!-- Bibliotecas Externas: FontAwesome e Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- 1. VARIÁVEIS DE CORES E DESIGN TOKENS --- */
+        :root {
+            --gvx-dark: #0A192F;
+            --gvx-blue: #0038A8;
+            --gvx-bright: #0052CC;
+            --gvx-electric: #0A84FF;
+            --gvx-accent: #00D2FF;
+            --gvx-bg-light: #F8FAFC;
+            --emerald-green: #10B981;
+            --emerald-hover: #059669;
+            --text-dark: #0F172A;
+            --text-muted: #64748B;
+            --border-light: #E2E8F0;
+            --font-main: 'Inter', sans-serif;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.05);
+            --shadow-card: 0 10px 30px rgba(0, 56, 168, 0.08);
+        }
+
+        /* --- 2. RESETS E BASE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: #FFFFFF;
+            color: var(--text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- 3. CONTAINER E LAYOUT --- */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 28px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .section-header {
+            max-width: 700px;
+            margin: 0 auto 48px auto;
+            text-align: center;
+        }
+
+        .section-tag {
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gvx-bright);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--text-dark);
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-top: 12px;
+        }
+
+        /* --- 4. COMPONENTES DE BOTÕES --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            border: none;
+            text-align: center;
+            min-height: 48px;
+        }
+
+        /* Botão Primário: Ação Principal de Simulação */
+        .btn-primary {
+            background-color: var(--gvx-bright);
+            color: #FFFFFF;
+            box-shadow: 0 8px 20px rgba(0, 82, 204, 0.25);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--gvx-blue);
+            transform: translateY(-2px);
+        }
+
+        /* Botão WhatsApp: Contacto Direto */
+        .btn-whatsapp {
+            background-color: var(--emerald-green);
+            color: #FFFFFF;
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.25);
+        }
+
+        .btn-whatsapp:hover {
+            background-color: var(--emerald-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Botão Secundário: Ações de Apoio */
+        .btn-secondary {
+            background-color: #F1F5F9;
+            color: var(--text-dark);
+            border: 1px solid var(--border-light);
+        }
+
+        .btn-secondary:hover {
+            background-color: #E2E8F0;
+        }
+
+        .btn-full {
+            width: 100%;
+        }
+
+        /* --- 5. CABEÇALHO / HEADER REESTRUTURADO --- */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-light);
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        /* Logo Fixo à Esquerda */
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .logo-subtitle {
+            border-left: 1px solid var(--border-light);
+            padding-left: 12px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-subtitle-top {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--gvx-dark);
+        }
+
+        .logo-subtitle-bottom {
+            font-size: 9px;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        /* Área do Menu e Ações à Direita */
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            margin-left: auto;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            list-style: none;
+            position: static; /* Corrige o posicionamento absoluto anterior */
+            transform: none;
+        }
+
+        .nav-link {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--gvx-bright);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-dark);
+            padding: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        /* Menu Mobile e Mascara */
+        .mobile-backdrop {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 80px);
+            background: rgba(10, 25, 47, 0.4);
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+            z-index: 98;
+        }
+
+        .mobile-backdrop.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .mobile-dropdown {
+            position: fixed;
+            top: 80px;
+            right: 0;
+            width: 100%;
+            background: #FFFFFF;
+            border-bottom: 1px solid var(--border-light);
+            padding: 0 24px;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, padding 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+            z-index: 99;
+        }
+
+        .mobile-dropdown.open {
+            max-height: 400px;
+            opacity: 1;
+            padding: 24px;
+        }
+
+        .mobile-dropdown .nav-link {
+            font-size: 16px;
+            padding: 8px 0;
+            border-bottom: 1px dashed var(--border-light);
+        }
+
+        .mobile-dropdown .nav-link:last-of-type {
+            border-bottom: none;
+        }
+
+        /* --- 6. SEÇÃO HERO --- */
+        .hero-section {
+            padding: 60px 0 90px 0;
+            position: relative;
+            background: #FFFFFF;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #EFF6FF;
+            border: 1px solid #DBEAFE;
+            color: var(--gvx-bright);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--gvx-electric);
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse-ring 1.5s infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.9); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0.5; }
+            100% { transform: scale(0.9); opacity: 1; }
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+        }
+
+        .highlight-text {
+            background: linear-gradient(135deg, var(--gvx-blue), var(--gvx-bright), var(--gvx-electric));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            font-size: 17px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .hero-check-list {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 32px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+            flex-wrap: wrap;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .check-item i {
+            color: var(--gvx-bright);
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+        }
+
+        /* --- 7. CARDS E FORMULÁRIOS --- */
+        .card-box {
+            background: #FFFFFF;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            box-shadow: var(--shadow-card);
+            position: relative;
+        }
+
+        .card-badge-top {
+            position: absolute;
+            top: -12px;
+            right: 24px;
+            background: linear-gradient(90deg, var(--gvx-blue), var(--gvx-electric));
+            color: #FFFFFF;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 50px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .form-control {
+            width: 100%;
+            background-color: var(--gvx-bg-light);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            padding: 14px 16px;
+            font-size: 15px;
+            font-family: inherit;
+            color: var(--text-dark);
+            outline: none;
+            transition: border-color 0.2s;
+            min-height: 48px;
+        }
+
+        .form-control:focus {
+            border-color: var(--gvx-bright);
+            background-color: #FFFFFF;
+        }
+
+        /* --- 8. PRODUTOS & MODALIDADES --- */
+        .bg-light {
+            background-color: var(--gvx-bg-light);
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .card-product {
+            background: #FFFFFF;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-xl);
+            padding: 36px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-product:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-card);
+        }
+
+        .product-icon {
+            width: 56px;
+            height: 56px;
+            background-color: #EFF6FF;
+            color: var(--gvx-bright);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 20px 0 28px 0;
+        }
+
+        .feature-list li {
+            font-size: 14px;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-list li i {
+            color: var(--emerald-green);
+        }
+
+        /* --- 9. OPERADORAS --- */
+        .operadoras-section {
+            background-color: #050B14;
+            color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-operadora {
+            background: radial-gradient(circle at top right, #0052CC 0%, #001F54 70%, #050B14 100%);
+            border: 1px solid rgba(10, 132, 255, 0.3);
+            border-radius: var(--radius-xl);
+            padding: 32px 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 190px;
+            transition: border-color 0.3s;
+        }
+
+        .card-operadora:hover {
+            border-color: var(--gvx-accent);
+        }
+
+        .operadora-logo-text {
+            font-size: 30px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #FFFFFF;
+            margin: auto 0;
+        }
+
+        .operadora-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(10, 132, 255, 0.8), transparent);
+            margin: 16px 0 8px 0;
+        }
+
+        .operadora-desc {
+            font-size: 12px;
+            color: #93C5FD;
+            font-weight: 500;
+        }
+
+        /* --- 10. FAQ & FOOTER --- */
+        .faq-item {
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .faq-btn {
+            width: 100%;
+            padding: 18px 20px;
+            background: var(--gvx-bg-light);
+            border: none;
+            text-align: left;
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--text-dark);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            gap: 12px;
+        }
+
+        .faq-body {
+            padding: 20px 24px;
+            font-size: 14px;
+            color: var(--text-muted);
+            background: #FFFFFF;
+            border-top: 1px solid var(--border-light);
+            display: none;
+        }
+
+        .site-footer {
+            background-color: #0A1322;
+            color: #94A3B8;
+            padding: 60px 0 30px 0;
+            font-size: 13px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #1E293B;
+        }
+
+        .footer-title {
+            color: var(--gvx-accent);
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a:hover {
+            color: #FFFFFF;
+        }
+
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 24px;
+            right: 20px;
+            background-color: var(--emerald-green);
+            color: #FFFFFF;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+            z-index: 999;
+            transition: transform 0.2s;
+        }
+
+        .floating-whatsapp:hover {
+            transform: scale(1.1);
+        }
+
+        /* --- 11. RESPONSIVIDADE --- */
+        @media (max-width: 992px) {
+            .section-padding { padding: 56px 0; }
+            .hero-section { padding: 32px 0 60px 0; }
+            .hero-grid { grid-template-columns: 1fr; gap: 36px; }
+            .hero-title { font-size: 34px; letter-spacing: -0.5px; }
+            .nav-menu { display: none; }
+            .menu-toggle { display: block; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+            .desktop-cta { display: none !important; }
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 0 16px; }
+            .hero-title { font-size: 28px; line-height: 1.2; }
+            .hero-description { font-size: 15px; }
+            .section-title { font-size: 24px; }
+            .card-box { padding: 24px 18px; }
+            .card-product { padding: 24px 20px; }
+            .hero-actions { flex-direction: column; gap: 12px; }
+            .hero-check-list { flex-direction: column; gap: 10px; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 20px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+            .card-operadora { min-height: 160px; padding: 24px 16px; }
+            .operadora-logo-text { font-size: 26px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABEÇALHO -->
+    <header class="site-header">
+        <div class="container header-flex">
+            <!-- Logo Fixo à Esquerda -->
+            <a href="#" class="brand-logo">
+                <img src="image/logo.jpeg" alt="GVX" style="width: 90px; height: auto;">
+                <div class="logo-subtitle">
+                    <span class="logo-subtitle-top">Corretora</span>
+                    <span class="logo-subtitle-bottom">SEGUROS & SAÚDE</span>
+                </div>
+            </a>
+
+            <!-- Menu e Ações Alinhados à Direita -->
+            <div class="header-right">
+                <ul class="nav-menu">
+                    <li><a href="#inicio" class="nav-link">Início</a></li>
+                    <li><a href="#produtos" class="nav-link">Saúde & Dental</a></li>
+                    <li><a href="#operadoras" class="nav-link">Operadoras</a></li>
+                    <li><a href="#faq" class="nav-link">Dúvidas</a></li>
+                </ul>
+
+                <a href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20fazer%20uma%20cotação." target="_blank" class="btn btn-whatsapp desktop-cta">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>Falar com Corretor</span>
+                </a>
+
+                <button id="mobileMenuBtn" class="menu-toggle" aria-label="Abrir Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MÁSCARA E DROPDOWN DO MENU MOBILE -->
+    <div id="mobileBackdrop" class="mobile-backdrop"></div>
+    <div id="mobileMenu" class="mobile-dropdown">
+        <a href="#inicio" class="nav-link mobile-link">Início</a>
+        <a href="#produtos" class="nav-link mobile-link">Saúde & Dental</a>
+        <a href="#operadoras" class="nav-link mobile-link">Operadoras</a>
+        <a href="#cotacao" class="nav-link mobile-link">Solicitar Cotação</a>
+        <a href="https://wa.me/5500000000000" target="_blank" class="btn btn-whatsapp btn-full" style="margin-top: 8px;">
+            <i class="fa-brands fa-whatsapp"></i> Falar via WhatsApp
+        </a>
+    </div>
+
+    <main>
+        <!-- SEÇÃO HERO -->
+        <section id="inicio" class="hero-section">
+            <div class="container">
+                <div class="hero-grid">
+                    <div>
+                        <div class="hero-badge">
+                            <span class="pulse-dot"></span>
+                            Especialistas em Planos de Saúde e Odontológicos
+                        </div>
+
+                        <h1 class="hero-title">
+                            Proteção e tranquilidade para sua <span class="highlight-text">família e empresa</span>.
+                        </h1>
+
+                        <p class="hero-description">
+                            A <strong>GVX Corretora</strong> encontra o plano ideal para você com as melhores operadoras do Brasil. Economize até 30% com redução de carências.
+                        </p>
+
+                        <div class="hero-check-list">
+                            <div class="check-item"><i class="fa-solid fa-circle-check"></i> Zero Burocracia</div>
+                            <div class="check-item"><i class="fa-solid fa-circle-check"></i> Redução de Carência</div>
+                            <div class="check-item"><i class="fa-solid fa-circle-check"></i> Desconto CNPJ</div>
+                        </div>
+
+                        <!-- Distinção Clara nos Botões de Ação da Hero -->
+                        <div class="hero-actions">
+                            <a href="#cotacao" class="btn btn-primary">
+                                <i class="fa-solid fa-calculator"></i> Simular Cotação Grátis
+                            </a>
+                            <a href="https://wa.me/5500000000000" target="_blank" class="btn btn-whatsapp">
+                                <i class="fa-brands fa-whatsapp"></i> Atendimento Imediato
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- FORMULÁRIO RÁPIDO DE SIMULAÇÃO -->
+                    <div>
+                        <div class="card-box">
+                            <div class="card-badge-top">Rápido & Seguro</div>
+                            <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 4px;">Simule Seu Plano em 1 Minuto</h3>
+                            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">Receba a tabela atualizada no seu WhatsApp.</p>
+
+                            <form id="quickQuoteForm">
+                                <div class="form-group">
+                                    <label class="form-label">Tipo de Plano</label>
+                                    <select id="heroTipoPlano" class="form-control">
+                                        <option value="Saúde e Odonto">Plano de Saúde + Odontológico</option>
+                                        <option value="Apenas Saúde">Somente Saúde</option>
+                                        <option value="Apenas Odonto">Somente Odontológico (Dental)</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Modalidade</label>
+                                    <select id="heroModalidade" class="form-control">
+                                        <option value="Individual">Individual (1 pessoa)</option>
+                                        <option value="Familiar">Familiar (2 ou mais pessoas)</option>
+                                        <option value="Empresarial (CNPJ)">Empresarial / MEI (A partir de 2 vidas)</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Seu Nome</label>
+                                    <input type="text" id="heroNome" placeholder="Digite seu nome completo" required class="form-control">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">WhatsApp com DDD</label>
+                                    <input type="tel" id="heroWhatsapp" placeholder="(00) 90000-0000" required class="form-control">
+                                </div>
+
+                                <!-- Botão de Ação Primária do Formulário Rápido -->
+                                <button type="submit" class="btn btn-primary btn-full">
+                                    <i class="fa-solid fa-paper-plane"></i> Ver Preços no WhatsApp
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO DE PRODUTOS -->
+        <section id="produtos" class="section-padding bg-light">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Especialidades GVX</span>
+                    <h2 class="section-title">Soluções Completas em Saúde & Dental</h2>
+                    <p class="section-subtitle">Garantimos o seu bem-estar e o sorriso da sua família ou colaboradores.</p>
+                </div>
+
+                <div class="grid-2">
+                    <div class="card-product">
+                        <div>
+                            <div class="product-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                            <h3 style="font-size: 22px; font-weight: 800; margin-bottom: 8px;">Plano de Saúde Médica</h3>
+                            <p style="font-size: 14px; color: var(--text-muted);">Rede dos melhores hospitais, laboratórios e atendimento de telemedicina 24 horas.</p>
+                            <ul class="feature-list">
+                                <li><i class="fa-solid fa-check"></i> Atendimento de Urgência e Emergência Nacional</li>
+                                <li><i class="fa-solid fa-check"></i> Acomodação em Enfermaria ou Quarto Individual</li>
+                                <li><i class="fa-solid fa-check"></i> Opções com ou sem Coparticipação</li>
+                                <li><i class="fa-solid fa-check"></i> Reembolso para consultas particulares</li>
+                            </ul>
+                        </div>
+                        <a href="#cotacao" class="btn btn-primary btn-full">Cotar Plano de Saúde</a>
+                    </div>
+
+                    <div class="card-product">
+                        <div>
+                            <div class="product-icon" style="background-color: #ECFEFF; color: #0891B2;"><i class="fa-solid fa-tooth"></i></div>
+                            <h3 style="font-size: 22px; font-weight: 800; margin-bottom: 8px;">Plano Odontológico (Dental)</h3>
+                            <p style="font-size: 14px; color: var(--text-muted);">Tratamentos preventivos, restaurações, canal, limpeza e ortodontia em todo o país.</p>
+                            <ul class="feature-list">
+                                <li><i class="fa-solid fa-check"></i> Limpezas, Flúor e Radiografias</li>
+                                <li><i class="fa-solid fa-check"></i> Tratamento de Canal e Gengiva</li>
+                                <li><i class="fa-solid fa-check"></i> Ortodontia (Aparelhos e Manutenção)</li>
+                                <li><i class="fa-solid fa-check"></i> Sem limite de utilização nos procedimentos cobertos</li>
+                            </ul>
+                        </div>
+                        <a href="#cotacao" class="btn btn-primary btn-full">Cotar Plano Odontológico</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO OPERADORAS -->
+        <section id="operadoras" class="section-padding operadoras-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag" style="color: var(--gvx-accent);">Nossas Parceiras</span>
+                    <h2 class="section-title" style="color: #FFFFFF;">As Melhores Operadoras do Brasil</h2>
+                    <p class="section-subtitle" style="color: #94A3B8;">Trabalhamos com os maiores nomes do mercado para garantir a máxima qualidade.</p>
+                </div>
+
+                <div class="grid-3">
+                    <div class="card-operadora">
+                        <div class="operadora-logo-text">Amil</div>
+                        <div>
+                            <div class="operadora-divider"></div>
+                            <div class="operadora-desc">Saúde & Odonto • Cobertura Nacional</div>
+                        </div>
+                    </div>
+
+                    <div class="card-operadora">
+                        <div class="operadora-logo-text">Unimed</div>
+                        <div>
+                            <div class="operadora-divider"></div>
+                            <div class="operadora-desc">Maior Rede Médica do Brasil</div>
+                        </div>
+                    </div>
+
+                    <div class="card-operadora">
+                        <div class="operadora-logo-text"> Bradesco Saúde</div>
+                        <div>
+                            <div class="operadora-divider"></div>
+                            <div class="operadora-desc">Tradição e Rede Premium</div>
+                        </div>
+                    </div>
+
+                    <div class="card-operadora">
+                        <div class="operadora-logo-text">SulAmérica</div>
+                        <div>
+                            <div class="operadora-divider"></div>
+                            <div class="operadora-desc">Reembolso & Qualidade Médica</div>
+                        </div>
+                    </div>
+
+                    <div class="card-operadora">
+                        <div class="operadora-logo-text"> Porto Saúde</div>
+                        <div>
+                            <div class="operadora-divider"></div>
+                            <div class="operadora-desc">Excelência e Atendimento Humanizado</div>
+                        </div>
+                    </div>
+
+                    <div class="card-operadora" style="background: linear-gradient(135deg, var(--gvx-bright), var(--gvx-blue)); justify-content: center; text-align: center;">
+                        <i class="fa-solid fa-calculator" style="font-size: 36px; color: var(--gvx-accent); margin-bottom: 12px;"></i>
+                        <h4 style="font-size: 18px; font-weight: 800; color: #FFFFFF;">Quer comparar valores?</h4>
+                        <p style="font-size: 12px; color: #DBEAFE; margin: 8px 0 16px 0;">Receba o estudo comparativo das operadoras.</p>
+                        <a href="#cotacao" class="btn btn-secondary" style="font-size: 12px; padding: 10px;">Comparar Agora</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO FORMULÁRIO DETALHADO -->
+        <section id="cotacao" class="section-padding bg-light">
+            <div class="container" style="max-width: 800px;">
+                <div class="card-box">
+                    <div class="text-center" style="margin-bottom: 32px;">
+                        <span class="section-tag">Sem Compromisso</span>
+                        <h2 class="section-title" style="font-size: 28px;">Solicite sua Cotação Personalizada</h2>
+                        <p class="section-subtitle">Preencha abaixo e receba o estudo completo no seu WhatsApp.</p>
+                    </div>
+
+                    <form id="fullQuoteForm">
+                        <div class="grid-2">
+                            <div class="form-group">
+                                <label class="form-label">Nome Completo *</label>
+                                <input type="text" id="fullNome" required placeholder="Ex: Maria Silva" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">WhatsApp / Telefone *</label>
+                                <input type="tel" id="fullWhatsapp" required placeholder="(00) 90000-0000" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="grid-3">
+                            <div class="form-group">
+                                <label class="form-label">Interesse</label>
+                                <select id="fullTipo" class="form-control">
+                                    <option value="Saúde e Odonto">Saúde + Dental</option>
+                                    <option value="Somente Saúde">Somente Saúde</option>
+                                    <option value="Somente Dental">Somente Dental</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Modalidade</label>
+                                <select id="fullModalidade" class="form-control">
+                                    <option value="Individual">Individual</option>
+                                    <option value="Familiar">Familiar</option>
+                                    <option value="Empresarial (CNPJ/MEI)">Empresarial (CNPJ/MEI)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Nº de Pessoas</label>
+                                <select id="fullVidas" class="form-control">
+                                    <option value="1 pessoa">1 pessoa</option>
+                                    <option value="2 a 5 pessoas">2 a 5 pessoas</option>
+                                    <option value="Mais de 5 pessoas">Mais de 5 pessoas</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Botão Principal de Envio com Destaque Azul -->
+                        <button type="submit" class="btn btn-primary btn-full" style="padding: 16px; margin-top: 10px;">
+                            <i class="fa-solid fa-paper-plane"></i> Gerar Estudo de Cotação
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="section-padding">
+            <div class="container" style="max-width: 800px;">
+                <div class="section-header">
+                    <span class="section-tag">Tire suas dúvidas</span>
+                    <h2 class="section-title">Perguntas Frequentes</h2>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-btn">
+                        <span>Posso contratar plano de saúde com meu CNPJ / MEI?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-body">
+                        Sim! A partir de 2 vidas (sócio + dependente, ou 2 funcionários), você já pode contratar um plano empresarial utilizando seu CNPJ ou MEI ativas com valores até 30% mais acessíveis.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-btn">
+                        <span>Como funciona a redução de carências?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-body">
+                        Se você já possui um plano anterior há mais de 12 meses, a GVX avalia seu histórico para realizar a portabilidade ou redução de carências na nova operadora.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="logo-text" style="margin-bottom: 12px;">
+                        <span class="logo-g" style="color: #FFF;">G</span><span class="logo-v">V</span><span class="logo-x">X</span>
+                    </div>
+                    <p style="line-height: 1.6;">GVX Corretora de Seguros. Especialistas em soluções em planos de saúde e odontológicos para indivíduos, famílias e empresas.</p>
+                </div>
+
+                <div>
+                    <div class="footer-title">Navegação</div>
+                    <ul class="footer-links">
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="#produtos">Saúde & Dental</a></li>
+                        <li><a href="#operadoras">Operadoras</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="footer-title">Operadoras</div>
+                    <ul class="footer-links">
+                        <li>Amil Saúde</li>
+                        <li>Unimed</li>
+                        <li>Bradesco Saúde</li>
+                        <li>SulAmérica</li>
+                        <li>Porto Saúde</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="footer-title">Atendimento</div>
+                    <p><i class="fa-brands fa-whatsapp text-emerald-400" style="margin-right: 6px;"></i> (00) 90000-0000</p>
+                    <p style="margin-top: 6px;"><i class="fa-regular fa-envelope" style="margin-right: 6px; color: var(--gvx-electric);"></i> contato@gvxseguros.com.br</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px; font-size: 11px; color: #64748B;">
+                &copy; 2026 GVX Corretora de Seguros. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- BOTÃO FLUTUANTE DO WHATSAPP -->
+    <a href="https://wa.me/5500000000000" target="_blank" class="floating-whatsapp" title="Falar no WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- LÓGICA JAVASCRIPT -->
+    <script>
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileBackdrop = document.getElementById('mobileBackdrop');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMobileMenu() {
+            const isOpen = mobileMenu.classList.contains('open');
+            if (isOpen) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        }
+
+        function openMobileMenu() {
+            mobileMenu.classList.add('open');
+            mobileBackdrop.classList.add('open');
+            mobileMenuBtn.classList.add('active');
+            mobileMenuBtn.querySelector('i').className = 'fa-solid fa-xmark';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('open');
+            mobileBackdrop.classList.remove('open');
+            mobileMenuBtn.classList.remove('active');
+            mobileMenuBtn.querySelector('i').className = 'fa-solid fa-bars';
+            document.body.style.overflow = '';
+        }
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        }
+
+        if (mobileBackdrop) {
+            mobileBackdrop.addEventListener('click', closeMobileMenu);
+        }
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        // Formatação dos formulários com envio via WhatsApp
+        document.getElementById('quickQuoteForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const tipo = document.getElementById('heroTipoPlano').value;
+            const modalidade = document.getElementById('heroModalidade').value;
+            const nome = document.getElementById('heroNome').value;
+            const whatsapp = document.getElementById('heroWhatsapp').value;
+
+            const numeroTelefone = "5500000000000";
+            const textoMensagem = `Olá! Meu nome é *${nome}*.\nGostaria de cotação da *GVX Corretora*.\n📌 Tipo: ${tipo}\n📌 Modalidade: ${modalidade}\n📱 WhatsApp: ${whatsapp}`;
+
+            window.open(`https://wa.me/${numeroTelefone}?text=${encodeURIComponent(textoMensagem)}`, '_blank');
+        });
+
+        document.getElementById('fullQuoteForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nome = document.getElementById('fullNome').value;
+            const whatsapp = document.getElementById('fullWhatsapp').value;
+            const tipo = document.getElementById('fullTipo').value;
+            const modalidade = document.getElementById('fullModalidade').value;
+            const vidas = document.getElementById('fullVidas').value;
+
+            const numeroTelefone = "5500000000000";
+            const textoMensagem = `*COTAÇÃO DETALHADA - GVX CORRETORA*\n\n👤 Nome: ${nome}\n📱 Contato: ${whatsapp}\n🏥 Tipo: ${tipo}\n👥 Modalidade: ${modalidade} (${vidas})`;
+
+            window.open(`https://wa.me/${numeroTelefone}?text=${encodeURIComponent(textoMensagem)}`, '_blank');
+        });
+
+        // Accordion FAQ
+        document.querySelectorAll('.faq-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const body = button.nextElementSibling;
+                const icon = button.querySelector('i');
+                const isOpen = body.style.display === 'block';
+
+                document.querySelectorAll('.faq-body').forEach(b => b.style.display = 'none');
+                document.querySelectorAll('.faq-btn i').forEach(i => i.className = 'fa-solid fa-chevron-down');
+
+                if (!isOpen) {
+                    body.style.display = 'block';
+                    icon.className = 'fa-solid fa-chevron-up';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
